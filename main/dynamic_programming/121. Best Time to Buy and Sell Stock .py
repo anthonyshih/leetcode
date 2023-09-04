@@ -36,5 +36,5 @@ def max_profit(prices):
             else:
                 return 0
 
-prices = prices = [7,6,4,3,1]
+prices = [7,6,4,3,1]
 print(max_profit(prices))
