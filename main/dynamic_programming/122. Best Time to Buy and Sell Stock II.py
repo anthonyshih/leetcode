@@ -33,13 +33,11 @@ Explanation: There is no way to make a positive profit, so we never buy the stoc
 
 
 
-def profit(prices):
-    profit_list=[]
+def maxProfit(self, prices):
+    profit = 0
     for i in range(1,len(prices)):
-        if prices[i-1] < prices[i]:
-            profit_list.append(prices[i] - prices[i-1])
-        return sum(profit_list)
-    else:
-        return 0
+        if prices[i] - prices[i-1]:
+            profit += (prices[i] - prices[i-1])
+    return profit
           
 print(profit([7,6,4,3,1]))
