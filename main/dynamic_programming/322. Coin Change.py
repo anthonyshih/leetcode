@@ -26,38 +26,17 @@ Output: 0
 
 
 
-def coin_change(coins, amount):
-    sorted_coins = sorted(coins, reverse=True)  # 將排序和賦值分開
-    count = []
-    for i in sorted_coins:
-        count.append(amount // i )
-        remainder = amount % i
-
-        if remainder == 0:
-            break
-        else:
-            amount = remainder
-    
-
-    return sum(count)
-print(coin_change([2], 3))
+https://www.youtube.com/watch?v=H9bfqozjoqs
 '''
 
 def coin_change(coins, amount):
-    sorted_coins = sorted(coins, reverse=True)
-    count = []
-    for i in sorted_coins:
-        count.append(amount // i)
-        remainder = amount % i
+    dp = [amount + 1]*(amount +1)
+    dp[0] = 0
 
-        if remainder == 0:
-            break
-        else:
-            amount = remainder
-    else:
-        if amount > 0:
-            return -1
-    
-    return sum(count)
+    for i in range(1, amount +1):
+        for c in coins:
+            if i - c >= 0:
+                dp[i] = min( dp[i] , 1 + dp[i - c])
+    return dp[amount] if dp[amount] != amount + 1 else -1
 
 print(coin_change([2], 3))
