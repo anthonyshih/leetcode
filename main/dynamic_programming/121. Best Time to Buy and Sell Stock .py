@@ -25,16 +25,21 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 
 """
 
-def max_profit(prices):
-    profit_list = []
-    for i in range(len(prices)):
-        for j in range(i, len(prices)):
-            if prices[j] > prices[i]:  # Compare the prices at index j and index i
-                profit = prices[j] - prices[i]
-                profit_list.append(profit)
-                return max(profit_list)
+def maxProfit(self, prices):
+        if not prices:
+            return 0  # 處理空清單的情況，直接回傳0
+
+        max_profit = 0
+        min_price = prices[0]
+
+        for price in prices:
+            if price < min_price:
+                min_price = price  # 如果遇到更低的價格，則更新最低價格
             else:
-                return 0
+                profit = price - min_price  # 計算以當前價格出售的利潤
+                max_profit = max(max_profit, profit)  # 更新最大利潤
+
+        return max_profit
 
 prices = [7,6,4,3,1]
 print(max_profit(prices))
